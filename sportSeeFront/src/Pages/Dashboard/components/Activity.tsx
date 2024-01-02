@@ -12,7 +12,7 @@ import { UserActivity } from "../../../types/user";
 import { fetchUserActivity } from "../../../services/requests";
 import { checkMockedRoute } from "../../../utils";
 import { useEffect, useState } from "react";
-interface CustomTooltipProps {
+export interface CustomTooltipProps {
   active?: boolean;
   payload?: {
     value: number;
@@ -25,8 +25,6 @@ function DailyActivity({ id }: { id: number }) {
   );
   const handleFetchUserActivity = async () => {
     const parsedData = await fetchUserActivity(id, checkMockedRoute());
-    console.log(parsedData);
-
     if (!parsedData) {
       console.error(parsedData.error);
       return;

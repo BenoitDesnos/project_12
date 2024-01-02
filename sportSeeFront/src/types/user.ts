@@ -26,3 +26,15 @@ export interface UserActivity {
   userId: number;
   sessions: Session[];
 }
+
+export interface UserAverageSessions {
+  userId: number;
+  sessions: [
+    {
+      day: number;
+      sessionLength: number;
+    }
+  ];
+}
+
+

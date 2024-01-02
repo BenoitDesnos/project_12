@@ -1,13 +1,11 @@
-import Copyright from "./Copyright";
+import Copyright from "../Copyright";
 import NavItem from "./NavItem";
-import cycling from "../assets/icons/cycling.svg";
-import swim from "../assets/icons/swim.svg";
-import yoga from "../assets/icons/yoga.svg";
-import weight from "../assets/icons/weight.svg";
+import cycling from "../../assets/icons/cycling.svg";
+import swim from "../../assets/icons/swim.svg";
+import yoga from "../../assets/icons/yoga.svg";
+import weight from "../../assets/icons/weight.svg";
 
 function Sidebar() {
-  console.log(cycling, yoga);
-  
   return (
     <div className="min-h-full w-32 bg-primary fixed shadow-layout left-0 top-0 -z-10 pt-[15%]">
       <div className="flex flex-col gap-5 justify-center items-center w-full">

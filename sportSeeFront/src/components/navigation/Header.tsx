@@ -1,4 +1,4 @@
-import Brand from "./Brand";
+import Brand from "../Brand";
 import Link from "./Link";
 
 function Header() {
