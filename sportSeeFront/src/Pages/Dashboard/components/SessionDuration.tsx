@@ -13,12 +13,12 @@ function SessionDuration() {
   const { id } = useParams();
   const dayLetters = ["L", "M", "M", "J", "V", "S", "D"];
   const handleFetchUserAverageSessions = async () => {
-    const parsedData = await fetchUserAverageSessions(
+    const data = await fetchUserAverageSessions(
       parseInt(id || ""),
       checkMockedRoute()
     );
-    if (parsedData) {
-      setUserAverageSessions(parsedData);
+    if (data) {
+      setUserAverageSessions(data);
     }
   };
 

@@ -5,6 +5,8 @@ import Welcome from "./components/Welcome";
 import DailyActivity from "./components/Activity";
 import { fetchUserData } from "../../services/requests";
 import SessionDuration from "./components/SessionDuration";
+import Performance from "./components/Performance";
+import AverageScore from "./components/AverageScore";
 
 function Dashboard({ useMock }: { useMock?: boolean }) {
   const [currentUserData, setCurrentUserData] = useState<User | undefined>(
@@ -28,6 +30,12 @@ function Dashboard({ useMock }: { useMock?: boolean }) {
           <DailyActivity id={parseInt(id || "")} />
           <div className="flex max-xl:flex-col justify-between mt-8 gap-8">
             <SessionDuration />
+            <Performance />
+            <AverageScore
+              latestScore={
+                currentUserData?.todayScore || currentUserData?.score || 0
+              }
+            ></AverageScore>
           </div>
         </div>
       </div>

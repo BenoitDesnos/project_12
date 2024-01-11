@@ -24,12 +24,12 @@ function DailyActivity({ id }: { id: number }) {
     undefined
   );
   const handleFetchUserActivity = async () => {
-    const parsedData = await fetchUserActivity(id, checkMockedRoute());
-    if (!parsedData) {
-      console.error(parsedData.error);
+    const data = await fetchUserActivity(id, checkMockedRoute());
+    if (!data) {
+      console.error(data.error);
       return;
     } else {
-      setUserActivity(parsedData);
+      setUserActivity(data);
     }
   };
 
@@ -39,7 +39,6 @@ function DailyActivity({ id }: { id: number }) {
 
   const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
     if (active && payload) {
-      // Customize the tooltip content here based on your data
       return (
         <div
           style={{

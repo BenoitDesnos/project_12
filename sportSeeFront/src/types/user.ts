@@ -37,4 +37,15 @@ export interface UserAverageSessions {
   ];
 }
 
-
+export interface UserPerformance {
+  userId: number;
+  kind: {
+    [key: number]: string;
+  };
+  data: [
+    {
+      value: number;
+      kind: number;
+    }
+  ];
+}

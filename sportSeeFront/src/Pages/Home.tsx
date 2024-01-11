@@ -20,7 +20,10 @@ export default function Home() {
           useMockedDate ? "bg-slate-400" : "bg-slate-500"
         } p-4 m-2 rounded-md text-white w-56 hover:bg-slate-400 transition-all cursor-pointer`}
         value="Utiliser l'API"
-        onClick={() => setUseMockedDate(false)}
+        onClick={() => {
+          setUseMockedDate(false);
+          handleNavigationClick("/dashboard/18");
+        }}
       />
       <div className="flex gap-4">
         {useMockedDate ? (
