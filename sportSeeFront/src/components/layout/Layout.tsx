@@ -7,7 +7,7 @@ function Layout() {
     <main className="relative">
       <Header />
       <Sidebar />
-      <div className="flex mt-24 ml-32">
+      <div className=" flex mt-24 ml-32">
         <Outlet />
       </div>
     </main>
