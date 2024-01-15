@@ -10,7 +10,6 @@ const useFormatPerformance = (userPerformance: UserPerformance | undefined) => {
   const [formattedPerformance, setFormattedPerformance] = useState<
     FormattedPerformanceType[] | undefined
   >([]);
-console.log(userPerformance);
 
 const kindFirstLetterToUppercase = (key: number) => {
   if (!userPerformance) return;
