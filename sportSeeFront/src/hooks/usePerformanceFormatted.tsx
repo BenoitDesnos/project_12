@@ -10,20 +10,21 @@ const useFormatPerformance = (userPerformance: UserPerformance | undefined) => {
   const [formattedPerformance, setFormattedPerformance] = useState<
     FormattedPerformanceType[] | undefined
   >([]);
+console.log(userPerformance);
 
-  const kindValueToUpperCase = (key: number) => {
-    if (!userPerformance) return;
-    const keys = Object.keys(userPerformance.kind).map((key) => parseInt(key));
-    const value = Object.values(userPerformance.kind)[keys.indexOf(key)];
-    return value.charAt(0).toUpperCase() + value.slice(1);
-  };
+const kindFirstLetterToUppercase = (key: number) => {
+  if (!userPerformance) return;
+  const keys = Object.keys(userPerformance.kind).map((key) => parseInt(key));
+  const value = Object.values(userPerformance.kind)[keys.indexOf(key)];
+  return value.charAt(0).toUpperCase() + value.slice(1);
+};
   const formatUserPerformanceData = (
     userPerformance: UserPerformance | undefined
   ) => {
     if (!userPerformance) return;
     const data = userPerformance.data.map((item) => {
       return {
-        kind: kindValueToUpperCase(item.kind),
+        kind: kindFirstLetterToUppercase(item.kind),
         value: item.value,
       };
     });
