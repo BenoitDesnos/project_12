@@ -4,7 +4,7 @@ import { fetchUserAverageSessions } from "../../services/requests";
 import { checkMockedRoute } from "../../utils";
 import SessionDuration from "../../components/dashboard/SessionDuration";
 
-const SeassionDurationContainer = ({ id }: { id: number }) => {
+const SessionDurationContainer = ({ id }: { id: number }) => {
   const [userAverageSessions, setUserAverageSessions] = useState<
     UserAverageSessions | undefined
   >(undefined);
@@ -29,4 +29,4 @@ const SeassionDurationContainer = ({ id }: { id: number }) => {
   );
 };
 
-export default SeassionDurationContainer;
+export default SessionDurationContainer;

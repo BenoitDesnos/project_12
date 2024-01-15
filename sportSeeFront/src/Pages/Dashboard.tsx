@@ -11,7 +11,7 @@ import protein from "../assets/icons/protein-icon.svg";
 import carbs from "../assets/icons/carbs-icon.svg";
 import fat from "../assets/icons/fat-icon.svg";
 import ActivityContainer from "../containers/dashboard/ActivityContainer";
-import SeassionDurationContainer from "../containers/dashboard/SeassionDurationContainer";
+import SessionDurationContainer from "../containers/dashboard/SeassionDurationContainer";
 import PerformanceContainer from "../containers/dashboard/PerformanceContainer";
 function Dashboard({ useMock }: { useMock?: boolean }) {
   const [currentUserData, setCurrentUserData] = useState<User | undefined>(
@@ -19,6 +19,7 @@ function Dashboard({ useMock }: { useMock?: boolean }) {
   );
   const navigate = useNavigate();
   const { id } = useParams();
+  const parsedId = parseInt(id || "");
 
   useEffect(() => {
     if (!id) {
@@ -40,10 +41,10 @@ function Dashboard({ useMock }: { useMock?: boolean }) {
       <Welcome currentUserData={currentUserData} />
       <div className=" flex max-xl:flex-col gap-8 mt-20">
         <div className="flex flex-col flex-[1_1_60%] min-w-[835px] xl:flex-auto h-full">
-          <ActivityContainer id={parseInt(id || "")} />
+          <ActivityContainer id={parsedId} />
           <div className="flex max-xl:flex-col justify-between mt-8 gap-8">
-            <SeassionDurationContainer id={parseInt(id || "")} />
-            <PerformanceContainer id={parseInt(id || "")} />
+            <SessionDurationContainer id={parsedId} />
+            <PerformanceContainer id={parsedId} />
             <AverageScore
               latestScore={
                 currentUserData?.todayScore || currentUserData?.score || 0
