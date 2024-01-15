@@ -8,10 +8,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { UserActivity } from "../../../types/user";
-import { fetchUserActivity } from "../../../services/requests";
-import { checkMockedRoute } from "../../../utils";
-import { useEffect, useState } from "react";
+import { UserActivity } from "../../types/user";
 export interface CustomTooltipProps {
   active?: boolean;
   payload?: {
@@ -19,24 +16,11 @@ export interface CustomTooltipProps {
     unit: string;
   }[];
 }
-function DailyActivity({ id }: { id: number }) {
-  const [userActivity, setUserActivity] = useState<UserActivity | undefined>(
-    undefined
-  );
-  const handleFetchUserActivity = async () => {
-    const data = await fetchUserActivity(id, checkMockedRoute());
-    if (!data) {
-      console.error(data.error);
-      return;
-    } else {
-      setUserActivity(data);
-    }
-  };
-
-  useEffect(() => {
-    handleFetchUserActivity();
-  }, [id]);
-
+function DailyActivity({
+  userActivity,
+}: {
+  userActivity: UserActivity | undefined;
+}) {
   const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
     if (active && payload) {
       return (

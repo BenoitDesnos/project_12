@@ -1,30 +1,14 @@
 import { Line, LineChart, Tooltip, XAxis, YAxis } from "recharts";
 import { CustomTooltipProps } from "./Activity";
-import { UserAverageSessions } from "../../../types/user";
-import { useEffect, useState } from "react";
-import { fetchUserAverageSessions } from "../../../services/requests";
-import { checkMockedRoute } from "../../../utils";
-import { useParams } from "react-router";
+import { UserAverageSessions } from "../../types/user";
 
-function SessionDuration() {
-  const [userAverageSessions, setUserAverageSessions] = useState<
-    UserAverageSessions | undefined
-  >(undefined);
-  const { id } = useParams();
-  const dayLetters = ["L", "M", "M", "J", "V", "S", "D"];
-  const handleFetchUserAverageSessions = async () => {
-    const data = await fetchUserAverageSessions(
-      parseInt(id || ""),
-      checkMockedRoute()
-    );
-    if (data) {
-      setUserAverageSessions(data);
-    }
-  };
-
-  useEffect(() => {
-    handleFetchUserAverageSessions();
-  }, [id]);
+function SessionDuration({
+  userAverageSessions,
+  tickFormatter,
+}: {
+  userAverageSessions: UserAverageSessions | undefined;
+  tickFormatter: string[];
+}) {
   const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
     if (active && payload?.length) {
       return (
@@ -79,7 +63,7 @@ function SessionDuration() {
           tick={{ fill: "#FFFFFF", fillOpacity: "50%", fontSize: "12px" }}
           stroke="#FFFFFF"
           tickMargin={10}
-          tickFormatter={(day) => dayLetters[day - 1]}
+          tickFormatter={(index) => tickFormatter[index - 1]}
         />
         <YAxis
           dataKey="sessionLength"

@@ -1,27 +1,36 @@
 import { useEffect, useState } from "react";
-import { User } from "../../types/user";
+import { User } from "../types/user";
 import { useParams } from "react-router";
-import Welcome from "./components/Welcome";
-import DailyActivity from "./components/Activity";
-import { fetchUserData } from "../../services/requests";
-import SessionDuration from "./components/SessionDuration";
-import Performance from "./components/Performance";
-import AverageScore from "./components/AverageScore";
-import InfoCard from "./components/CardsInfo";
-import calories from "../../assets/icons/calories-icon.svg";
-import protein from "../../assets/icons/protein-icon.svg";
-import carbs from "../../assets/icons/carbs-icon.svg";
-import fat from "../../assets/icons/fat-icon.svg";
+import { useNavigate } from "react-router-dom";
+import Welcome from "../components/dashboard/Welcome";
+import { fetchUserData } from "../services/requests";
+import AverageScore from "../components/dashboard/AverageScore";
+import InfoCard from "../components/dashboard/CardsInfo";
+import calories from "../assets/icons/calories-icon.svg";
+import protein from "../assets/icons/protein-icon.svg";
+import carbs from "../assets/icons/carbs-icon.svg";
+import fat from "../assets/icons/fat-icon.svg";
+import ActivityContainer from "../containers/dashboard/ActivityContainer";
+import SeassionDurationContainer from "../containers/dashboard/SeassionDurationContainer";
+import PerformanceContainer from "../containers/dashboard/PerformanceContainer";
 function Dashboard({ useMock }: { useMock?: boolean }) {
   const [currentUserData, setCurrentUserData] = useState<User | undefined>(
     undefined
   );
+  const navigate = useNavigate();
   const { id } = useParams();
 
   useEffect(() => {
-    if (!id) return;
+    if (!id) {
+      navigate("/not-found", { replace: true });
+      return;
+    }
     const asyncFetch = async () => {
       const user = await fetchUserData(id, useMock);
+      if (!user) {
+        navigate("/not-found", { replace: true });
+      }
+
       setCurrentUserData(user);
     };
     asyncFetch();
@@ -31,10 +40,10 @@ function Dashboard({ useMock }: { useMock?: boolean }) {
       <Welcome currentUserData={currentUserData} />
       <div className=" flex max-xl:flex-col gap-8 mt-20">
         <div className="flex flex-col flex-[1_1_60%] min-w-[835px] xl:flex-auto h-full">
-          <DailyActivity id={parseInt(id || "")} />
+          <ActivityContainer id={parseInt(id || "")} />
           <div className="flex max-xl:flex-col justify-between mt-8 gap-8">
-            <SessionDuration />
-            <Performance />
+            <SeassionDurationContainer id={parseInt(id || "")} />
+            <PerformanceContainer id={parseInt(id || "")} />
             <AverageScore
               latestScore={
                 currentUserData?.todayScore || currentUserData?.score || 0
