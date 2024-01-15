@@ -17,8 +17,8 @@ export default function Home() {
       <input
         type="button"
         className={`${
-          useMockedDate ? "bg-slate-400" : "bg-slate-500"
-        } p-4 m-2 rounded-md text-white w-56 hover:bg-slate-400 transition-all cursor-pointer`}
+          useMockedDate ? "bg-slate-900" : "bg-slate-900"
+        } p-4 m-2 rounded-md text-white w-56 hover:bg-slate-700 transition-all cursor-pointer`}
         value="Utiliser l'API"
         onClick={() => {
           setUseMockedDate(false);
@@ -31,7 +31,7 @@ export default function Home() {
             <input
               key={index}
               type="button"
-              className="bg-slate-500 p-4 m-2 rounded-md text-white w-fit hover:bg-slate-400 transition-all cursor-pointer"
+              className="bg-slate-900 p-4 m-2 rounded-md text-white w-fit hover:bg-slate-700 transition-all cursor-pointer"
               value={`Se connecter en tant que ${user.userInfos.firstName} ${user.userInfos.lastName}`}
               onClick={() =>
                 handleNavigationClick("/dashboard/mock/" + user.id)
@@ -41,8 +41,8 @@ export default function Home() {
         ) : (
           <input
             type="button"
-            className="bg-slate-500 p-4 m-2 rounded-md text-white w-56 hover:bg-slate-400 transition-all cursor-pointer"
-            value="Utiliser les données mockées"
+            className="bg-slate-900 p-4 m-2 rounded-md text-white w-56 hover:bg-slate-700 transition-all cursor-pointer"
+            value="Utiliser Mock"
             onClick={() => setUseMockedDate(true)}
           />
         )}

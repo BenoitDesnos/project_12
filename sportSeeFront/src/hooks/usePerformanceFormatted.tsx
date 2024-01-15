@@ -11,7 +11,7 @@ const useFormatPerformance = (userPerformance: UserPerformance | undefined) => {
     FormattedPerformanceType[] | undefined
   >([]);
 
-  const findKindValue = (key: number) => {
+  const kindValueToUpperCase = (key: number) => {
     if (!userPerformance) return;
     const keys = Object.keys(userPerformance.kind).map((key) => parseInt(key));
     const value = Object.values(userPerformance.kind)[keys.indexOf(key)];
@@ -23,7 +23,7 @@ const useFormatPerformance = (userPerformance: UserPerformance | undefined) => {
     if (!userPerformance) return;
     const data = userPerformance.data.map((item) => {
       return {
-        kind: findKindValue(item.kind),
+        kind: kindValueToUpperCase(item.kind),
         value: item.value,
       };
     });
