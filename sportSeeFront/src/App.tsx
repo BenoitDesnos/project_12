@@ -3,6 +3,7 @@ import Home from "./Pages/Home";
 import Dashboard from "./Pages/Dashboard";
 import Layout from "./components/layout/Layout";
 import NotFound from "./components/NotFound";
+import ServerError from "./components/ServerError";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route element={<NotFound />} />
       </Route>
       <Route path="/not-found" element={<NotFound />} />
+      <Route path="/server-error" element={<ServerError />} />
       <Route path="/*" element={<NotFound />} />
     </Routes>
   );

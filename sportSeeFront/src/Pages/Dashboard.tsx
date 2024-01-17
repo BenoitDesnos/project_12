@@ -27,10 +27,7 @@ function Dashboard({ useMock }: { useMock?: boolean }) {
       return;
     }
     const asyncFetch = async () => {
-      const user = await fetchUserData(id, useMock);
-      if (!user) {
-        navigate("/not-found", { replace: true });
-      }
+      const user = await fetchUserData(id, navigate, useMock);     
 
       setCurrentUserData(user);
     };
